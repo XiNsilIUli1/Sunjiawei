@@ -53,6 +53,28 @@
    " class="content-container">
    <p>日子很长 很多天</p>
    <p>日子很短 眨眼间</p>
+   
+   <!-- 新增的问答区域 -->
+   <div class="mt-6 max-w-md mx-auto">
+     <div class="bg-white p-4 rounded-lg shadow-sm">
+       <h3 class="text-gray-700 font-medium mb-3">若你有沉金板</h3>
+       <p class="text-sm text-gray-600 mb-3">请输入随机密码以进入对应的界面</p>
+       <input 
+         type="text" 
+         id="goldenPlateCode" 
+         class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+         placeholder="输入密码..."
+       >
+       <button 
+         onclick="checkGoldenPlateCode()"
+         class="mt-3 w-full bg-blue-500 text-white py-2 px-4 rounded-md text-sm hover:bg-blue-600 transition-colors"
+       >
+         进入
+       </button>
+       <div id="goldenPlateResult" class="mt-3 text-sm"></div>
+     </div>
+   </div>
+   
      <img src='https://i.imgs.ovh/2025/09/23/7RL8NF.png'  width="80px" height="80px">
    </div>
    
@@ -139,6 +161,28 @@
    <script>
         // 当前问题编号
         let currentQuestion = 1;
+        
+        // 处理沉金板密码验证
+        function checkGoldenPlateCode() {
+            const codeInput = document.getElementById('goldenPlateCode');
+            const userInput = codeInput.value.trim();
+            const resultDiv = document.getElementById('goldenPlateResult');
+            
+            // 验证输入
+            if (!userInput) {
+                resultDiv.innerHTML = `<span class="text-yellow-600"><i class="fa fa-exclamation-circle"></i> 请输入密码</span>`;
+                return;
+            }
+            
+            // 检查密码
+            if (userInput === '758399') {
+                // 正确密码，跳转到指定网址
+                window.location.href = 'https://xinsiliuli1.github.io/Sunjiawei/zhongqiujie758399';
+            } else {
+                // 其他密码
+                resultDiv.innerHTML = `<span class="text-gray-600"><i class="fa fa-info-circle"></i> 好像没有与之对应的网址呢！</span>`;
+            }
+        }
         
         // 处理第一个问题的回答
         function checkOwnerName() {
